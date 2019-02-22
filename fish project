@@ -1,0 +1,89 @@
+background(89, 216, 255);
+
+var centerX = 200;
+var centerY = 100;
+var bodyLength = 118;
+var bodyHeight = 74;
+var bodyColor = color(162, 0, 255);
+var numX = 0;
+var numY = 0;
+
+
+
+         
+var drawfish = function(centerX,centerY,bodyLength,bodyHeight,bodyColor)
+{
+    noStroke();
+fill(bodyColor);
+// body
+ellipse(centerX, centerY, bodyLength, bodyHeight);
+// tail
+var tailWidth = bodyLength/4;
+var tailHeight = bodyHeight/2;
+triangle(centerX-bodyLength/2, centerY,
+         centerX-bodyLength/2-tailWidth, centerY-tailHeight,
+         centerX-bodyLength/2-tailWidth, centerY+tailHeight);
+// eye
+fill(33, 33, 33);
+ellipse(centerX+bodyLength/4, centerY, bodyHeight/5, bodyHeight/5);
+};
+
+var drawfish2 = function(centerX,centerY,bodyLength,bodyHeight,bodyColor)
+{
+    noStroke();
+fill(bodyColor);
+// body
+ellipse(centerX-59, centerY, bodyLength, bodyHeight);
+// tail
+var tailWidth = bodyLength/4;
+var tailHeight = bodyHeight/2;
+triangle(centerX+bodyLength/2-2*tailWidth, centerY,
+         centerX+bodyLength/2-tailWidth, centerY-tailHeight,
+         centerX+bodyLength/2-tailWidth, centerY+tailHeight);
+// eye
+fill(33, 33, 33);
+ellipse(centerX-bodyLength/2-30, centerY, bodyHeight/5, bodyHeight/5);
+};
+
+draw = function()
+{
+    background(89, 216, 255);
+    if(centerX<340 && numX===0)
+    {
+    centerX ++;
+    bodyColor = color(162, 0, 255);
+    drawfish(centerX,centerY,bodyLength,bodyHeight,bodyColor);
+    }
+    else
+    {
+    numX=1;
+    }
+    
+    if(numX===1 && centerX>119)
+    {
+        centerX--;
+       drawfish2(centerX,centerY,bodyLength,bodyHeight,bodyColor); 
+    }
+    else
+    {
+        numX=0;
+    }
+    
+    if(centerY<363 && numY===0)
+    {
+        centerY ++;
+    }
+    else
+    {
+        numY=1;
+    }
+    
+    if (numY===1 && centerY>36)
+    {
+        centerY--;
+    }
+    else
+    {
+        numY=0;    
+    }
+};
